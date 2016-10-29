@@ -40,7 +40,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(884, 581);
+            this.pictureBox1.Size = new System.Drawing.Size(880, 580);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 

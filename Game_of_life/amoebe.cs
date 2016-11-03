@@ -8,12 +8,18 @@ namespace Game_of_life
 {
     class amoebe
     {
-        public Int32 name;
-        public Int32 age;
-        public Int32 xPos;
-        public Int32 yPos;
-        public String sex;
+        public Int32 name { get; set; }
+        public Int32 age { get; set; }
+        public Int32 xPos { get; set; }
+        public Int32 yPos { get; set; }
         public Boolean furtile = true;
+
+        public amoebe.gender sex { get; set; }
+        public enum gender
+        {
+            m = "male";
+            f = "Female";
+        }
 
     }
 }

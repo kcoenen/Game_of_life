@@ -19,7 +19,8 @@ namespace Game_of_life
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            amoebe newamoebe = new amoebe();
+            newamoebe.sex = amoebe.gender.m;
         }
     }
 }

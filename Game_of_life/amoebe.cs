@@ -20,6 +20,5 @@ namespace Game_of_life
             m = "male";
             f = "Female";
         }
-
     }
 }

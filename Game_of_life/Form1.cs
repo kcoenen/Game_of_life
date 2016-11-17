@@ -13,7 +13,7 @@ namespace Game_of_life
 {
     public partial class Form1 : Form
     {
-        //List<class> aAmoebe = new List<class>();
+        List<amoebe> aAmoe = new List<amoebe>();
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace Game_of_life
 
         public void  fill_world()
         {
-            string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            string file = "C:\\Users\\coene\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
             List<string> agender = new List<string>();
@@ -43,13 +43,15 @@ namespace Game_of_life
                 // ...
                 // "line" is a line in the file. Add it to our List.
                 //lines.Add(line);
-                var values = line.Split(';');
-                aname.Add(values[0]);
-                agender.Add(values[1]);
-                aposx.Add(values[2]);
-                aposy.Add(values[3]);
-                aage.Add(values[4]);
+                amoebe Data = new amoebe();
+                string[] values = new string(5);
+                Data.age = Convert.ToInt32(values[0]);
+                Data.sex = values[1];
+                Data.xPos = Convert.ToInt32(values[2]);
+                Data.yPos = Convert.ToInt32(values[3]);
+                Data.age = Convert.ToInt32(values[4]);
 
+                aAmoe.Add(Data);
             }
 
             lbltest.Text = "";

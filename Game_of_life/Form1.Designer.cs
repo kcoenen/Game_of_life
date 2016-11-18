@@ -32,7 +32,7 @@
             this.txtNumberOfAmoebes = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
-            this.lbltest = new System.Windows.Forms.Label();
+            this.txtAmoebe = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,21 +71,21 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // lbltest
+            // txtAmoebe
             // 
-            this.lbltest.AutoSize = true;
-            this.lbltest.Location = new System.Drawing.Point(1032, 370);
-            this.lbltest.Name = "lbltest";
-            this.lbltest.Size = new System.Drawing.Size(35, 13);
-            this.lbltest.TabIndex = 4;
-            this.lbltest.Text = "label2";
+            this.txtAmoebe.Location = new System.Drawing.Point(930, 223);
+            this.txtAmoebe.Multiline = true;
+            this.txtAmoebe.Name = "txtAmoebe";
+            this.txtAmoebe.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAmoebe.Size = new System.Drawing.Size(290, 370);
+            this.txtAmoebe.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 605);
-            this.Controls.Add(this.lbltest);
+            this.Controls.Add(this.txtAmoebe);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNumberOfAmoebes);
@@ -105,7 +105,7 @@
         private System.Windows.Forms.TextBox txtNumberOfAmoebes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Label lbltest;
+        private System.Windows.Forms.TextBox txtAmoebe;
     }
 }
 

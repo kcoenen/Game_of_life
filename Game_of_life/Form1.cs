@@ -25,7 +25,7 @@ namespace Game_of_life
 
         public void  fill_world()
         {
-            string file = "C:\\Users\\coene\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
             List<string> agender = new List<string>();
@@ -44,8 +44,8 @@ namespace Game_of_life
                 // "line" is a line in the file. Add it to our List.
                 //lines.Add(line);
                 amoebe Data = new amoebe();
-                string[] values = new string(5);
-                Data.age = Convert.ToInt32(values[0]);
+                string[] values = line.Split(';');
+                Data.name = Convert.ToInt32(values[0]);
                 Data.sex = values[1];
                 Data.xPos = Convert.ToInt32(values[2]);
                 Data.yPos = Convert.ToInt32(values[3]);
@@ -54,7 +54,11 @@ namespace Game_of_life
                 aAmoe.Add(Data);
             }
 
-            lbltest.Text = "";
+            foreach (amoebe aAmoebe in aAmoe)
+            {
+                txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
+
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)

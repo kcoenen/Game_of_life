@@ -67,6 +67,7 @@ namespace Game_of_life
             SolidBrush draw_male = new  SolidBrush(System.Drawing.Color.Blue);
             SolidBrush draw_female = new SolidBrush(System.Drawing.Color.Red);
 
+            paper.Clear(Color.Teal);
             foreach( amoebe a in aAmoe)
             {
                 if (a.sex == "F")
@@ -83,25 +84,24 @@ namespace Game_of_life
 
         public void move_amoebes()
         {
-            
             foreach (amoebe a in aAmoe)
             {
                 Int32 rdm_move = rdm.Next(0, 11);
-                if (rdm_move < 5)
+                if (rdm_move < 3)
                 {
-                    a.xPos += 2;
+                    a.xPos += 5;
                 }
-                else if (rdm_move >= 5 && rdm_move < 10)
+                else if (rdm_move >= 3 && rdm_move < 12)
                 {
-                    a.xPos -= 2;
+                    a.xPos -= 7;
                 }
-                else if (rdm_move >= 10 && rdm_move < 15)
+                else if (rdm_move >= 12 && rdm_move < 15)
                 {
-                    a.yPos += 2;
+                    a.yPos += 5;
                 }
                 else if (rdm_move >= 15)
                 {
-                    a.yPos -= 2;
+                    a.yPos -= 5;
                 }
 
                 switch (a.xPos)
@@ -113,6 +113,16 @@ namespace Game_of_life
                         a.xPos = pictureBox1.Width;
                         break;
                 }
+                switch (a.yPos)
+                {
+                    case 580:
+                        a.yPos = 0;
+                        break;
+                    case 0:
+                        a.yPos = pictureBox1.Height;
+                        break;
+                }
+
                 
             }
             draw_world();
@@ -120,7 +130,13 @@ namespace Game_of_life
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
+            timer1.Interval = 100;
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            move_amoebes();
         }
     }
 }

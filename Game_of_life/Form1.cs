@@ -20,10 +20,11 @@ namespace Game_of_life
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            fill_world();
+            initialize_world();
+            draw_world();
         }
 
-        public void  fill_world()
+        public void initialize_world()
         {
             string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
             List<string> lines = new List<string>();
@@ -56,9 +57,28 @@ namespace Game_of_life
 
             foreach (amoebe aAmoebe in aAmoe)
             {
-                txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
+                txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.sex + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
 
             }
+        }
+        public void draw_world()
+        {
+            Graphics paper = pictureBox1.CreateGraphics();
+            SolidBrush draw_male = new  SolidBrush(Color.Blue);
+            SolidBrush draw_female = new SolidBrush(Color.Red);
+
+            foreach( amoebe a in aAmoe)
+            {
+                if (a.sex == "F")
+                {
+                    paper.FillEllipse(draw_female, a.xPos, a.yPos, a.age, a.age);
+                }
+                else if (a.sex == "M")
+                {
+                    paper.FillEllipse(draw_male, a.xPos, a.yPos, a.age, a.age);
+                }
+            }
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)

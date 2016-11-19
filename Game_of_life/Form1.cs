@@ -14,6 +14,7 @@ namespace Game_of_life
     public partial class Form1 : Form
     {
         List<amoebe> aAmoe = new List<amoebe>();
+        Random rdm = new System.Random();
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +22,6 @@ namespace Game_of_life
         private void Form1_Load(object sender, EventArgs e)
         {
             initialize_world();
-            draw_world();
         }
 
         public void initialize_world()
@@ -55,17 +55,17 @@ namespace Game_of_life
                 aAmoe.Add(Data);
             }
 
-            foreach (amoebe aAmoebe in aAmoe)
-            {
-                txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.sex + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
+            //foreach (amoebe aAmoebe in aAmoe)
+            //{
+            //    txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.sex + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
 
-            }
+            //}
         }
         public void draw_world()
         {
             Graphics paper = pictureBox1.CreateGraphics();
-            SolidBrush draw_male = new  SolidBrush(Color.Blue);
-            SolidBrush draw_female = new SolidBrush(Color.Red);
+            SolidBrush draw_male = new  SolidBrush(System.Drawing.Color.Blue);
+            SolidBrush draw_female = new SolidBrush(System.Drawing.Color.Red);
 
             foreach( amoebe a in aAmoe)
             {
@@ -79,6 +79,43 @@ namespace Game_of_life
                 }
             }
 
+        }
+
+        public void move_amoebes()
+        {
+            
+            foreach (amoebe a in aAmoe)
+            {
+                Int32 rdm_move = rdm.Next(0, 11);
+                if (rdm_move < 5)
+                {
+                    a.xPos += 2;
+                }
+                else if (rdm_move >= 5 && rdm_move < 10)
+                {
+                    a.xPos -= 2;
+                }
+                else if (rdm_move >= 10 && rdm_move < 15)
+                {
+                    a.yPos += 2;
+                }
+                else if (rdm_move >= 15)
+                {
+                    a.yPos -= 2;
+                }
+
+                switch (a.xPos)
+                {
+                    case 880:
+                        a.xPos = 0;
+                        break;
+                    case 0:
+                        a.xPos = pictureBox1.Width;
+                        break;
+                }
+                
+            }
+            draw_world();
         }
 
         private void btnStart_Click(object sender, EventArgs e)

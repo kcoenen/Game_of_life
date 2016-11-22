@@ -26,7 +26,8 @@ namespace Game_of_life
 
         public void initialize_world()
         {
-            string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            //C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\
+            string file = "amoebe.csv";
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
             List<string> agender = new List<string>();
@@ -72,11 +73,26 @@ namespace Game_of_life
             {
                 if (a.sex == "F")
                 {
-                    paper.FillEllipse(draw_female, a.xPos, a.yPos, a.age, a.age);
+                    if (a.age <= 10)
+                    {
+                        paper.FillEllipse(draw_female, a.xPos, a.yPos, a.age, a.age);
+                    }
+                    else if (a.age > 10)
+                    {
+                        paper.FillEllipse(draw_female, a.xPos, a.yPos, 10, 10);
+                    }
+                    
                 }
                 else if (a.sex == "M")
                 {
-                    paper.FillEllipse(draw_male, a.xPos, a.yPos, a.age, a.age);
+                    if (a.age <= 10)
+                    {
+                        paper.FillEllipse(draw_male, a.xPos, a.yPos, a.age, a.age);
+                    }
+                    else if (a.age > 10)
+                    {
+                        paper.FillEllipse(draw_male, a.xPos, a.yPos, 10, 10);
+                    }
                 }
             }
 
@@ -86,20 +102,20 @@ namespace Game_of_life
         {
             foreach (amoebe a in aAmoe)
             {
-                Int32 rdm_move = rdm.Next(0, 11);
-                if (rdm_move < 3)
+                Int32 rdm_move = rdm.Next(0, 25);
+                if (rdm_move < 5)
                 {
                     a.xPos += 5;
                 }
-                else if (rdm_move >= 3 && rdm_move < 12)
+                else if (rdm_move >= 5 && rdm_move < 15)
                 {
-                    a.xPos -= 7;
+                    a.xPos -= 10;
                 }
-                else if (rdm_move >= 12 && rdm_move < 15)
+                else if (rdm_move >= 15 && rdm_move < 20)
                 {
                     a.yPos += 5;
                 }
-                else if (rdm_move >= 15)
+                else if (rdm_move >= 20)
                 {
                     a.yPos -= 5;
                 }
@@ -107,19 +123,19 @@ namespace Game_of_life
                 switch (a.xPos)
                 {
                     case 880:
-                        a.xPos = 0;
+                        a.xPos = 1;
                         break;
                     case 0:
-                        a.xPos = pictureBox1.Width;
+                        a.xPos = 880;
                         break;
                 }
                 switch (a.yPos)
                 {
                     case 580:
-                        a.yPos = 0;
+                        a.yPos = 1;
                         break;
                     case 0:
-                        a.yPos = pictureBox1.Height;
+                        a.yPos = 580;
                         break;
                 }
 

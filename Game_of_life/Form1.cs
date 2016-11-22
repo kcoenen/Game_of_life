@@ -27,7 +27,7 @@ namespace Game_of_life
         public void initialize_world()
         {
             //C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\
-            string file = "amoebe.csv";
+            string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
             List<string> agender = new List<string>();
@@ -120,26 +120,42 @@ namespace Game_of_life
                     a.yPos -= 5;
                 }
 
-                switch (a.xPos)
+                //switch (a.xPos)
+                //{
+                //    case >880:
+                //        a.xPos = 1;
+                //        break;
+                //    case 0:
+                //        a.xPos = 880;
+                //        break;
+                //}
+                //switch (a.yPos)
+                //{
+                //    case 580:
+                //        a.yPos = 1;
+                //        break;
+                //    case 0:
+                //        a.yPos = 580;
+                //        break;
+                //}
+                if (a.xPos >= pictureBox1.Width)
                 {
-                    case 880:
-                        a.xPos = 1;
-                        break;
-                    case 0:
-                        a.xPos = 880;
-                        break;
+                    a.xPos = 1;
                 }
-                switch (a.yPos)
+                else if (a.xPos <=1)
                 {
-                    case 580:
-                        a.yPos = 1;
-                        break;
-                    case 0:
-                        a.yPos = 580;
-                        break;
+                    a.xPos = pictureBox1.Width;
                 }
 
-                
+                if (a.yPos >= pictureBox1.Height)
+                {
+                    a.yPos = 1;
+                }
+                else if (a.yPos <= 1)
+                {
+                    a.yPos = pictureBox1.Height;
+                }
+
             }
             draw_world();
         }

@@ -21,13 +21,15 @@ namespace Game_of_life
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            pictureBox1.BackColor = Color.Teal;
             initialize_world();
         }
 
         public void initialize_world()
         {
             //C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\
-            string file = "C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            var fileloc = "C:\\Users\\%username%\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            string file = Environment.ExpandEnvironmentVariables(fileloc);
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
             List<string> agender = new List<string>();
@@ -56,11 +58,6 @@ namespace Game_of_life
                 aAmoe.Add(Data);
             }
 
-            //foreach (amoebe aAmoebe in aAmoe)
-            //{
-            //    txtAmoebe.Text += aAmoebe.name + "\t" + aAmoebe.sex + "\t" + aAmoebe.age + "\t" + aAmoebe.xPos + "\t" + aAmoebe.yPos + Environment.NewLine;
-
-            //}
         }
         public void draw_world()
         {
@@ -109,7 +106,7 @@ namespace Game_of_life
                 }
                 else if (rdm_move >= 5 && rdm_move < 15)
                 {
-                    a.xPos -= 10;
+                    a.xPos -= 20;
                 }
                 else if (rdm_move >= 15 && rdm_move < 20)
                 {
@@ -120,24 +117,6 @@ namespace Game_of_life
                     a.yPos -= 5;
                 }
 
-                //switch (a.xPos)
-                //{
-                //    case >880:
-                //        a.xPos = 1;
-                //        break;
-                //    case 0:
-                //        a.xPos = 880;
-                //        break;
-                //}
-                //switch (a.yPos)
-                //{
-                //    case 580:
-                //        a.yPos = 1;
-                //        break;
-                //    case 0:
-                //        a.yPos = 580;
-                //        break;
-                //}
                 if (a.xPos >= pictureBox1.Width)
                 {
                     a.xPos = 1;
@@ -157,6 +136,7 @@ namespace Game_of_life
                 }
 
             }
+
             draw_world();
         }
 

@@ -28,7 +28,7 @@ namespace Game_of_life
         public void initialize_world()
         {
             //C:\\Users\\kris\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\
-            var fileloc = "C:\\Users\\%username%\\Google Drive\\pcvo\\c#\\visualstudio2015\\projects\\Game_of_life\\Game_of_life\\amoebe.csv";
+            var fileloc = @"C:\Users\%username%\Google Drive\pcvo\c#\visualstudio2015\projects\Game_of_life\Game_of_life\amoebe.csv";
             string file = Environment.ExpandEnvironmentVariables(fileloc);
             List<string> lines = new List<string>();
             List<string> aname = new List<string>();
@@ -38,7 +38,7 @@ namespace Game_of_life
             List<string> aage = new List<string>();
             StreamReader reader = new StreamReader(file);
 
-
+            //goes through a textfile and ad these to the list amoebe
             string line;
             while ((line = reader.ReadLine()) != null)
             {
@@ -64,7 +64,9 @@ namespace Game_of_life
             Graphics paper = pictureBox1.CreateGraphics();
             SolidBrush draw_male = new  SolidBrush(System.Drawing.Color.Blue);
             SolidBrush draw_female = new SolidBrush(System.Drawing.Color.Red);
-
+            //goes through the list amoebe and draws a cirkel on the location from x and y loccation and age
+            // If the age is above 10 the amoebe is fully grown and stays on size 10
+            // females are red and males are blue
             paper.Clear(Color.Teal);
             foreach( amoebe a in aAmoe)
             {
@@ -97,6 +99,7 @@ namespace Game_of_life
 
         public void move_amoebes()
         {
+            // generates a random number and if this number is in a certain range it moves the x or y position in a certain direction.
             foreach (amoebe a in aAmoe)
             {
                 Int32 rdm_move = rdm.Next(0, 25);
@@ -117,11 +120,13 @@ namespace Game_of_life
                     a.yPos -= 5;
                 }
 
+                //The folowing sees if the x and y position is over the wide of the picturebox and if so sets the amoebe on the other side of the textbox
+
                 if (a.xPos >= pictureBox1.Width)
                 {
                     a.xPos = 1;
                 }
-                else if (a.xPos <=1)
+                else if (a.xPos <= 1)
                 {
                     a.xPos = pictureBox1.Width;
                 }
@@ -134,10 +139,41 @@ namespace Game_of_life
                 {
                     a.yPos = pictureBox1.Height;
                 }
+                //goes throug each amoebe and if 1 is close to another and they or male and female ad a new amoebe with age 1 is created
+                foreach (amoebe am in aAmoe)
+                {
+                    if (am.xPos - a.xPos <= 10 || am.yPos - a.xPos <= 10)
+                    {
+                        if (am.sex == "F" && a.sex == "M")
+                        {
+                            create_amoebe(am.xPos,am.yPos, 1);
+                        }
+                        else if (am.sex == "M" && a.sex == "F")
+                        {
+                            create_amoebe(a.xPos, a.yPos, 1);
+                        }
+                    }
 
+                }
             }
 
+
             draw_world();
+        }
+
+        public void create_amoebe(Int32 x, Int32 y, Int32 age)
+        {
+            Int32 rdm_sex = rdm.Next(1, 101);
+            amoebe baby = new amoebe();
+            if (rdm_sex < 50)
+            {
+                baby.sex = "M";
+                baby.xPos = x;
+                baby.yPos = y;
+                baby.age = age;
+                baby.name = aAmoe.Count() + 1;
+                aAmoe.Add(baby);
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
